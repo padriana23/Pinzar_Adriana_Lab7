@@ -1,24 +1,38 @@
 ﻿using Microsoft.UI.Xaml;
+using System;
+using Pinzar_Adriana_Lab7.Data;
+using System.IO;
+using Application = Microsoft.Maui.Controls.Application;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace Pinzar_Adriana_Lab7.WinUI
+namespace Pinzar_Adriana_Lab7
 {
-    /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
-    /// </summary>
-    public partial class App : MauiWinUIApplication
+
+    public partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
-        public App()
+        static ShoppingListDatabase database;
+        public static ShoppingListDatabase Database
         {
-            this.InitializeComponent();
+            get
+            {
+                if (database == null)
+                {
+                    database = new
+                   ShoppingListDatabase(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.
+                   LocalApplicationData), "ShoppingList.db3"));
+                }
+                return database;
+            }
         }
 
-        protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
+
+        public App()
+        {
+            InitializeComponent();
+            MainPage = new AppShell();
+        }
+
     }
 }

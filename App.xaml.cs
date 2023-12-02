@@ -2,6 +2,8 @@
 {
     public partial class App : Application
     {
+        internal static object Database;
+
         public App()
         {
             InitializeComponent();
