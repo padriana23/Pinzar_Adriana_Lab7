@@ -1,3 +1,4 @@
+using Pinzar_Adriana_Lab7.Models;
 namespace Pinzar_Adriana_Lab7;
 
 public partial class ListEntryPage : ContentPage
